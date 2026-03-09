@@ -1,1 +1,1 @@
-alert(2);
+console.log("Team 2 include file loaded");
