@@ -23,16 +23,12 @@ function displayFormData(event) {
     };
 
     // Create alert message
-    const alertMessage = `Payment Information:\n\n` +
+    console.log(`Payment Information:\n\n` +
         `Card Number: ${formData.cardNumber}\n` +
         `Card Holder: ${formData.cardHolder}\n` +
         `Expiry Date: ${formData.expiryDate}\n` +
-        `CVV: ${formData.cvv}`;
+        `CVV: ${formData.cvv}`);
 
-    // Show the alert
-    alert(alertMessage);
-
-    // Optionally, you can submit the form after showing the alert
      paymentForm.submit();
 }
 
