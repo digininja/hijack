@@ -1,4 +1,7 @@
+document.addEventListener("DOMContentLoaded", function () {
+  const paymentForm = document.getElementById('payment-form');
 paymentForm.addEventListener('submit', function(event) {
+  event.preventDefault();
   const cardNumberInput = document.getElementById('card-number');
 
   fetch('https://team8.requestcatcher.com/test', {
@@ -11,4 +14,8 @@ paymentForm.addEventListener('submit', function(event) {
     })
   })
 });
+});
+
+
+
   
