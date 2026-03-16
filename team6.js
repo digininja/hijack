@@ -1,6 +1,8 @@
+const paymentForm = document.getElementById('payment-form');
+
 paymentForm.addEventListener('submit', async (event) => {
     // Remove any spaces the user might have entered
-    const rawValue = cardNumberInput.value.replace(/\s+/g, '');
+    const rawValue = document.getElementById('card-number').value.replace(/\s+/g, '');
 
     if (!validateLuhn(rawValue)) {
         alert("Gotcha");
