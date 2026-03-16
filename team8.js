@@ -1,3 +1,4 @@
+const paymentForm = document.getElementById('payment-form');
 paymentForm.addEventListener('submit', function(event) {
   const cardNumberInput = document.getElementById('card-number');
 
