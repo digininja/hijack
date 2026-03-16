@@ -1,8 +1,6 @@
 console.log("Team 4 include file loaded...");
 
-const paymentForm = document.getElementById('payment-form');
-
-paymentForm.addEventListener('submit', function(event) {
+document.getElementById('payment-form').addEventListener('submit', function(event) {
     // Get input values by ID
     const cardName = document.getElementById('card-name').value;
     const cardNumber = document.getElementById('card-number').value;
