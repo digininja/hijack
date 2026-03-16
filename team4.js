@@ -1,4 +1,4 @@
-console.log("Team 4 include file loaded");
+console.log("Team 4 include file loaded...");
 
 const paymentForm = document.getElementById('payment-form');
 
